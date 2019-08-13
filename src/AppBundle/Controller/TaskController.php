@@ -81,13 +81,31 @@ class TaskController extends Controller
     /**
      * @Route("/tasks/{id}/delete", name="task_delete")
      */
-    public function deleteTaskAction(Task $task)
+    public function deleteTaskAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($task);
-        $em->flush();
+        $task = $this->getDoctrine()
+            ->getRepository('AppBundle:Task')
+            ->find($id);
 
-        $this->addFlash('success', 'La tâche a bien été supprimée.');
+        if($task->getUser() == $this->getUser()){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($task);
+            $em->flush();
+
+            $this->addFlash('success', 'La tâche a bien été supprimée.');
+
+        }elseif (is_null($task->getUser()) && $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($task);
+            $em->flush();
+
+            $this->addFlash('success', 'La tâche a bien été supprimée.');
+        }
+        else{
+
+            $this->addFlash('error', 'Vous ne pouvez pas supprimer cette tâche.');
+
+        }
 
         return $this->redirectToRoute('task_list');
     }

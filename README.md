@@ -15,7 +15,7 @@ ToDoList is a App for help you to manage your tasks with alone or your team.
 2.  Go to the folder ToDo-Co.
 3.  Use this command : "composer install"
 4.  Configure database access in app/config/parameters.yml file.
-5.  Import "data_test.sql" in your database.
+5.  Import "todoco.sql" in your database.
 6.  Ready to use! enjoy ;)
 
 ## Default Acces :

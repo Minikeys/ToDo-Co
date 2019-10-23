@@ -11,7 +11,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Table("user")
  * @ORM\Entity
- * @UniqueEntity("email")
+ * @UniqueEntity("email", message="Email déjà utilisé.")
+ * @UniqueEntity("username", message="Username déjà utilisé.")
  */
 class User implements UserInterface
 {

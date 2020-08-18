@@ -1,4 +1,4 @@
-# ToDoList
+# ToDoList - not maintained
 
 ToDoList is a App for help you to manage your tasks with alone or your team.
 
